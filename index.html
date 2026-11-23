@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090e20">
+<meta name="description" content="Electronics: a chapter-based, interactive learning academy with an animated JK flip-flop lesson.">
+<title>Electronics — Interactive Learning Academy</title>
+<style>
+:root{--bg:#090e20;--panel:#131b34;--panel2:#11182e;--card:#1a2441;--border:#2a3554;--white:#eef5ff;--muted:#a5b5d3;--subtle:#7183a7;--cyan:#36e2da;--mint:#6cf3c7;--purple:#aa91ff;--amber:#ffd37b;--pink:#ff89bc;--off:#586784;--shadow:0 24px 80px rgba(0,0,0,.29)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:radial-gradient(ellipse 850px 560px at 85% -6%,rgba(116,80,219,.2),transparent 70%),radial-gradient(ellipse 750px 500px at -15% 30%,rgba(31,156,196,.095),transparent 72%),var(--bg);color:var(--white);font:500 15px/1.55 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}button{font:inherit}button:focus-visible,select:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}button{cursor:pointer}button:disabled{cursor:wait;opacity:.65}.wrapper{max-width:1320px;margin:auto;padding:24px 28px 52px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:37px}.brand{display:flex;align-items:center;gap:12px;font-size:14px;letter-spacing:.12em;font-weight:900}.brandmark{width:37px;height:37px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#12cfc5,#8e74ff);color:#091025;box-shadow:0 8px 30px #40ded328;font-size:21px}.tag{border:1px solid #375077;background:#142540;color:#a5d6fb;border-radius:40px;padding:7px 13px;font-size:11px;letter-spacing:.10em;font-weight:800;text-transform:uppercase}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin:0 0 30px}.eyebrow{text-transform:uppercase;letter-spacing:.24em;font-weight:900;color:var(--cyan);font-size:12px;margin:0 0 7px}.hero h1{font-size:clamp(36px,5.4vw,70px);letter-spacing:-.06em;line-height:1.045;margin:0 0 13px;font-weight:880}.hero h1 span{background:linear-gradient(95deg,#5af4e5,#aa91ff 76%);background-clip:text;color:transparent}.hero p{font-size:16px;color:var(--muted);max-width:670px;line-height:1.62;margin:0}.hero-aside{align-self:flex-end;display:flex;align-items:center;gap:10px;border:1px solid #354363;background:#131c36;border-radius:16px;padding:14px 17px;flex:none}.hero-aside .symbol{font-size:29px;line-height:1;color:var(--cyan)}.hero-aside small{display:block;color:var(--subtle);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.hero-aside strong{display:block;font-size:13px;color:#dbe7ff;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(325px,1fr);gap:20px;align-items:stretch}.panel{background:linear-gradient(160deg,rgba(26,35,64,.95),rgba(17,24,46,.96));border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);min-width:0}.lab{padding:26px 27px 24px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:23px}.panel h2{font-size:20px;letter-spacing:-.03em;margin:0;font-weight:800}.panel-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.status-badge{display:flex;align-items:center;gap:8px;background:#21304b;border:1px solid #384969;border-radius:50px;padding:7px 12px;white-space:nowrap;font-size:11px;font-weight:800;color:#d3e3f9}.status-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 15px var(--cyan)}.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:17px}.switch{min-width:0;border:1px solid #354361;border-radius:16px;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:#eaf2ff;text-align:left;background:#1b2745;transition:.18s ease;min-height:91px}.switch:hover{border-color:#8296be;transform:translateY(-1px)}.switch[aria-checked="true"]{border-color:#27a99f;background:#152f40}.switch-text strong{font-size:15px;display:block}.switch-text small{font-size:12px;display:block;color:var(--muted)}.switch-pill{display:flex;align-items:center;justify-content:center;width:54px;height:52px;flex:none;border-radius:13px;background:#303b57;color:#bdc9de;border:1px solid #4c5873;font-size:25px;font-weight:900;transition:.2s ease}.switch[aria-checked="true"] .switch-pill{color:#071f25;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 23px #36e2da40}.board{border:1px solid #2e4064;border-radius:18px;background:radial-gradient(circle at 50% 46%,rgba(38,85,129,.23),transparent 68%),#0b1429;position:relative;overflow:hidden;margin-bottom:16px}.board:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#36527c 1px,transparent 1px);background-size:21px 21px;opacity:.17;pointer-events:none}.board svg{display:block;width:100%;height:auto;position:relative}.wire{fill:none;stroke:#62718f;stroke-width:5;stroke-linecap:round;transition:stroke .23s ease,filter .23s ease}.wire.active{stroke:#41ecd8;filter:drop-shadow(0 0 5px #41ecd8)}.wire.complement.active{stroke:#aa91ff;filter:drop-shadow(0 0 5px #aa91ff)}.clock-wire{stroke:#9b81f4}.chip{fill:#172241;stroke:#7b91b9;stroke-width:2}.chip-hot{fill:#1a2949;stroke:#92a5ca}.svg-label{fill:#b9cae6;font-size:18px;font-weight:800}.svg-number{fill:#f1f8ff;font-size:22px;font-weight:900}.svg-small{fill:#8a9ebf;font-size:12px;letter-spacing:.1em;font-weight:800}.led{fill:#33435a;stroke:#596b89;stroke-width:2;transition:.25s}.led.on{fill:#44efca;stroke:#7afde3;filter:drop-shadow(0 0 11px #3cf0ca)}.led.inverted.on{fill:#b5a0ff;stroke:#c8baff;filter:drop-shadow(0 0 11px #aa91ff)}.pulse-particle{opacity:0;fill:#fff;filter:drop-shadow(0 0 9px #fff)}.board.pulsing .pulse-particle{animation:travel .55s linear both}.board.pulsing .chip{animation:chipFlash .6s ease both}.board.pulsing #clock-in{stroke:#e5dbff;filter:drop-shadow(0 0 8px #9f8aff)}@keyframes travel{0%{transform:translateX(0px);opacity:0}18%{opacity:1}83%{opacity:1}100%{transform:translateX(200px);opacity:0}}@keyframes chipFlash{0%,100%{stroke:#7b91b9}40%{stroke:#d4c8ff;filter:drop-shadow(0 0 8px #aa91ff)}}.next-banner{display:flex;gap:14px;align-items:center;justify-content:space-between;border:1px solid #394e6b;border-radius:15px;background:#14233d;padding:14px 16px;margin-bottom:16px}.next-banner small{display:block;text-transform:uppercase;font-size:10px;letter-spacing:.13em;font-weight:900;color:#91b4d7}.next-banner strong{display:block;font-size:14px;line-height:1.5}.next-bit{flex:none;width:51px;height:51px;border-radius:13px;background:#253657;display:grid;place-items:center;font-size:29px;font-weight:900;color:#fff;border:1px solid #64759d}.next-bit.changed{background:#174b52;border-color:#2ddbcc;color:#79f9e9}.actionrow{display:flex;gap:10px;align-items:stretch}.btn-primary{background:linear-gradient(104deg,#41e4d5,#86f5dc);color:#05262f;border:0;border-radius:15px;font-weight:900;padding:16px 19px;flex:1;display:flex;justify-content:center;gap:12px;align-items:center;box-shadow:0 10px 26px #1acfc02c;transition:.2s}.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}.btn-primary .arrow{font-size:25px;font-weight:1000}.btn-secondary{border-radius:15px;background:#202d4b;border:1px solid #3a4b6b;color:#d9e7fc;padding:13px 17px;font-weight:800;min-width:100px;transition:.18s}.btn-secondary:hover{background:#2e3e60}.btn-secondary.playing{background:#352a59;border-color:#8465dd;color:#dfd2ff}.tiny-note{display:flex;align-items:center;gap:6px;color:var(--subtle);margin:13px 2px 0;font-size:11px}.tiny-note .key{border:1px solid #465878;border-bottom-width:2px;border-radius:4px;padding:0 5px;color:#d8e3f8}.right-panel{padding:26px 27px;display:flex;flex-direction:column}.section-label{color:var(--cyan);letter-spacing:.16em;font-weight:900;font-size:10px;text-transform:uppercase;margin-bottom:10px}.mode-card{border:1px solid #425272;border-radius:18px;padding:20px;background:linear-gradient(140deg,#242d54,#172744);position:relative;overflow:hidden}.mode-card:before{content:"";width:180px;height:180px;border-radius:100%;position:absolute;right:-75px;top:-89px;background:radial-gradient(circle,#9371f54d,transparent 70%);pointer-events:none}.mode-row{display:flex;align-items:center;gap:11px;margin-bottom:11px}.mode-icon{width:49px;height:49px;border-radius:14px;background:#36305c;color:#c6b8ff;display:grid;place-items:center;font-size:26px;font-weight:900}.mode-title{font-size:25px;line-height:1.1;letter-spacing:-.035em;font-weight:900}.mode-formula{font-weight:800;font-size:13px;color:#b8a5ff}.mode-description{font-size:14px;line-height:1.7;color:#c9d5ed;min-height:70px;margin:0}.rule{border:1px solid #303f5e;border-radius:14px;padding:12px 14px;margin:16px 0 22px;background:#111c34;display:flex;align-items:start;gap:11px}.rule-icon{font-size:20px;color:var(--amber);line-height:1.25}.rule b{display:block;font-size:12px}.rule p{font-size:12px;color:var(--muted);margin:2px 0 0}.truth-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 8px}.truth-head h3{font-size:14px;letter-spacing:-.01em;margin:0;font-weight:900}.truth-head span{font-size:11px;color:var(--subtle)}.truth{width:100%;border-spacing:0 6px;text-align:left;border-collapse:separate}.truth th{color:#8ea5c9;font-size:11px;letter-spacing:.08em;padding:5px 10px;text-transform:uppercase}.truth td{background:#1a2542;border-top:1px solid #2f3e5f;border-bottom:1px solid #2f3e5f;padding:10px;font-weight:750;font-size:12px;white-space:nowrap}.truth tr td:first-child{border-left:1px solid #2f3e5f;border-radius:10px 0 0 10px}.truth tr td:last-child{border-right:1px solid #2f3e5f;border-radius:0 10px 10px 0;color:#d9e4fc}.truth tbody tr.active td{background:#244449;border-color:#2ad6c8;color:#b0fff2}.truth tbody tr.active td:last-child{color:#e7fffd}.truth tr .val{font-size:14px}.truth .result{font-size:12px}.tip{margin-top:auto;border-radius:15px;border:1px solid #324463;background:#12213b;padding:13px 15px}.tip b{font-size:12px;color:#dbe7fd}.tip p{font-size:12px;color:#aebedc;margin:5px 0 0}.bottom-grid{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(320px,1fr);gap:20px;margin-top:20px}.wave-panel{padding:24px 26px}.wave-head{display:flex;justify-content:space-between;align-items:start;gap:13px}.wave-head h2{font-size:19px}.wave-head p{font-size:12px;color:var(--muted);margin:5px 0 0}.cycle-count{background:#1d2d48;border-radius:11px;border:1px solid #364866;color:#b6cbee;padding:8px 12px;font-weight:800;font-size:12px;white-space:nowrap}.wavebox{margin-top:15px;border:1px solid #2b3d5c;border-radius:14px;background:#0b152c;overflow:hidden}.wavebox svg{width:100%;display:block}.trace{fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}.gridline{stroke:#2e405f;stroke-width:1;stroke-dasharray:3 7}.axislabel{fill:#c3d3ec;font-size:15px;font-weight:900}.timelabel{fill:#8aa1c4;font-size:11px;font-weight:750}.wave-foot{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;color:#93a8ca;font-size:11px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}.learn-panel{padding:24px 26px}.learn-panel h2{font-size:19px}.learn-panel>p{color:var(--muted);font-size:13px;margin:6px 0 17px}.presets{display:grid;gap:9px}.preset{border:1px solid #354563;background:#1a2847;color:#e9f3ff;padding:10px 12px;border-radius:12px;display:flex;gap:11px;align-items:center;text-align:left;transition:.2s}.preset:hover{background:#253958;border-color:#6084a6;transform:translateX(2px)}.preset-code{font-size:13px;border-radius:7px;background:#354766;border:1px solid #4c5d7c;padding:7px;font-weight:900;letter-spacing:.06em;min-width:72px;text-align:center}.preset span:last-child{flex:1}.preset strong{display:block;font-size:12px}.preset small{display:block;color:#a7bbd7;font-size:11px}.preset .chev{color:#85a6cc}.footer-note{text-align:center;color:#7288ab;font-size:12px;margin-top:24px}.footer-note b{color:#afc3dd}.rise{display:inline-block;color:var(--cyan);font-weight:900}.flash{animation:textflash .48s ease}@keyframes textflash{50%{text-shadow:0 0 18px #41ecd8;color:#60fbdc}}@media(max-width:1020px){.layout,.bottom-grid{grid-template-columns:1fr}.right-panel .tip{margin-top:15px}.hero-aside{display:none}.right-panel{display:block}.mode-description{min-height:0}.truth td{padding:12px}.bottom-grid{margin-top:16px}}@media(max-width:560px){.wrapper{padding:18px 13px 30px}.topbar{margin-bottom:28px}.tag{font-size:9px;padding:6px 9px}.brand{font-size:12px;letter-spacing:.07em}.hero{margin-bottom:20px}.hero h1{font-size:40px}.hero p{font-size:14px}.lab,.right-panel,.wave-panel,.learn-panel{padding:18px 15px}.panel{border-radius:19px}.panel-head{margin-bottom:16px}.panel h2{font-size:18px}.controls{gap:9px}.switch{padding:10px;min-height:77px}.switch-pill{width:42px;height:43px;font-size:21px}.switch-text strong{font-size:13px}.switch-text small{font-size:10px}.btn-secondary{padding:11px;min-width:70px;font-size:12px}.btn-primary{padding:14px 9px;font-size:13px}.btn-primary .arrow{font-size:22px}.actionrow{gap:7px}.status-badge{font-size:10px}.truth td{padding:10px 6px}.wave-foot{gap:10px}.wave-head h2{font-size:18px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Electronics course shell */
+.course-shell{display:grid;grid-template-columns:276px minmax(0,1fr);min-height:100vh}
+.course-sidebar{border-right:1px solid #253451;background:#0c1326;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;padding:28px 17px 20px;z-index:10;overflow:auto}
+.course-brand{display:flex;align-items:center;gap:11px;padding:3px 12px 30px;font-weight:900;font-size:18px;letter-spacing:-.04em;color:#eff7ff}
+.course-brand .brand-icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#2be4d5,#8375ed);color:#071322;display:grid;place-items:center;font-size:24px;box-shadow:0 8px 25px #26d7cf22}
+.course-brand small{display:block;color:#7b92b8;font-size:10px;font-weight:800;letter-spacing:.15em;margin-top:-3px}
+.side-label{color:#758aaf;font-size:10px;font-weight:900;letter-spacing:.17em;text-transform:uppercase;padding:9px 13px 10px}
+.side-button,.chapter-button,.lesson-button{border:0;display:flex;align-items:center;gap:11px;text-align:left;width:100%;background:none;color:#a6b6d1;border-radius:11px;padding:12px 13px;font-weight:750;font-size:13px;transition:background .18s,color .18s}
+.side-button:hover,.chapter-button:hover,.lesson-button:hover{background:#1a2948;color:#edf6ff}
+.side-button.active,.chapter-button.active{background:#1a3145;color:#71f7e4}
+.side-icon{font-size:18px;width:21px;display:inline-block;text-align:center}
+.chapter-button .chapter-chevron{margin-left:auto;font-size:16px;transition:transform .2s}
+.chapter-button[aria-expanded=true] .chapter-chevron{transform:rotate(90deg)}
+.lesson-stack{margin:3px 0 16px 18px;border-left:1px solid #354563;padding:4px 0 4px 12px}
+.lesson-button{padding:11px 12px;gap:9px;font-size:12px}
+.lesson-button.active{background:#223651;color:#77f3e5;box-shadow:inset 3px 0 #39d8cf}
+.lesson-button .lesson-dot{width:7px;height:7px;flex:none;border-radius:50%;background:#6980a8}
+.lesson-button.active .lesson-dot{background:#50e5d6;box-shadow:0 0 13px #4ce2d4}
+.sidebar-spacer{flex:1}
+.side-add{margin-top:8px;display:flex;align-items:center;gap:9px;padding:11px 13px;border:1px dashed #435572;border-radius:11px;background:#111f37;color:#b6cbed;font-size:12px;font-weight:800;width:100%;text-align:left}
+.side-add:hover{background:#1c3050}
+.side-foot{margin:18px 10px 0;border-top:1px solid #283750;padding-top:18px;color:#879abb;font-size:11px;line-height:1.5}
+.course-workspace{min-width:0}
+.course-header{height:66px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #263551;background:#0d1629b8;gap:12px}
+.breadcrumb{display:flex;align-items:center;gap:9px;min-width:0;color:#7891b6;font-size:12px;font-weight:800}
+.breadcrumb b{color:#d9e7ff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.breadcrumb a{color:#93b2d9;text-decoration:none;white-space:nowrap}
+.breadcrumb a:hover{color:#49e5d3}
+.crumb-separator{color:#445975}
+.header-pill{border:1px solid #38516b;border-radius:30px;background:#18283b;color:#b7d3ed;font-size:11px;font-weight:800;padding:7px 11px;white-space:nowrap}
+.mobile-menu{display:none;border:1px solid #3a4b6b;background:#1b2a46;color:#e8f7ff;border-radius:9px;font-size:20px;padding:3px 10px}
+.course-workspace>.wrapper{max-width:1500px;padding:31px 31px 52px}
+.course-workspace .topbar{display:none}
+.course-workspace .hero h1{font-size:clamp(34px,4.3vw,62px)}
+.lesson-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:23px;flex-wrap:wrap}
+.lesson-kicker{color:#83a4c8;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.complete-button{border:1px solid #355c5a;background:#163537;color:#8ce8d8;padding:9px 13px;border-radius:12px;font-weight:900;font-size:12px}
+.complete-button.done{background:#183e34;color:#5ef2c1;border-color:#34886f}
+.complete-button:hover{filter:brightness(1.2)}
+.course-page{max-width:1350px;margin:0 auto;padding:55px 39px 70px}
+.course-page[hidden],#jkLessonView[hidden],.lesson-stack[hidden]{display:none!important}
+.intro-kicker{font-size:12px;letter-spacing:.19em;color:#40decf;font-weight:900;text-transform:uppercase;margin:0 0 12px}
+.page-title{font-size:clamp(39px,5vw,64px);font-weight:900;letter-spacing:-.06em;line-height:1.12;margin:0 0 13px}
+.page-subtitle{font-size:16px;color:#a7bad4;max-width:660px;margin:0 0 37px}
+.page-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.75fr);gap:19px}
+.course-card{border:1px solid #32435f;border-radius:22px;background:linear-gradient(145deg,#1a2b49,#121d35);padding:27px;min-width:0}
+.featured-card{background:radial-gradient(circle at 95% 0, #20bfad23, transparent 42%),linear-gradient(145deg,#1b2a4d,#14213c)}
+.course-card small{color:#7deada;font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.course-card h2{font-size:27px;letter-spacing:-.04em;margin:16px 0 8px}
+.course-card p{font-size:14px;line-height:1.7;color:#a9bad5;margin:4px 0 21px}
+.course-card strong{color:#e6f3ff}
+.course-cta{background:#43e4d5;border:0;color:#082934;padding:12px 17px;border-radius:11px;font-weight:900;font-size:13px}
+.course-cta:hover{filter:brightness(1.11)}
+.progress-track{height:9px;border-radius:20px;background:#283b55;overflow:hidden;margin:18px 0 9px}
+.progress-fill{background:linear-gradient(90deg,#2ad7c3,#95f2dd);height:100%;width:0%;border-radius:20px;transition:width .3s}
+.chapter-lesson-card{display:flex;align-items:center;gap:18px;border:1px solid #344965;border-radius:16px;background:#1b2b48;padding:18px;margin-top:16px}
+.chapter-lesson-card .chapter-symbol{width:55px;height:55px;flex:none;display:grid;place-items:center;border-radius:14px;background:#244b54;color:#5af0dc;font-size:26px}
+.chapter-lesson-card strong{font-size:17px;display:block}
+.chapter-lesson-card p{font-size:12px;margin:3px 0 0;color:#a9bedc}
+.chapter-lesson-card button{margin-left:auto}
+.chapter-card-title{font-size:17px;margin:0 0 4px}
+.empty-note{font-size:13px;color:#a3b6d3;margin:15px 0 0}
+@media(max-width:1180px){.course-shell{grid-template-columns:235px minmax(0,1fr)}.course-workspace>.wrapper{padding:25px 20px 40px}}
+@media(max-width:850px){.course-shell{display:block}.course-sidebar{position:fixed;left:0;top:0;width:275px;box-shadow:20px 0 60px #0409158a;transform:translateX(-105%);transition:transform .22s ease}.course-sidebar.open{transform:translateX(0)}.mobile-menu{display:block}.course-header{padding:0 17px}.course-header .header-pill{display:none}.course-workspace>.wrapper{padding:20px 16px 39px}.course-page{padding:36px 19px 55px}.page-grid{grid-template-columns:1fr}.crumb-separator:nth-of-type(2){display:none}}
+@media(max-width:540px){.chapter-lesson-card{align-items:flex-start;flex-wrap:wrap}.chapter-lesson-card button{margin:0 0 0 73px}.course-card{padding:21px}.lesson-toolbar{margin-bottom:13px}}
+
+</style>
+</head>
+<body>
+
+<div class="course-shell">
+  <aside class="course-sidebar" id="courseSidebar" aria-label="Course chapters">
+    <div class="course-brand"><div class="brand-icon" aria-hidden="true">ϟ</div><div>ELECTRONICS<small>INTERACTIVE ACADEMY</small></div></div>
+    <div class="side-label">Explore</div>
+    <button class="side-button" id="overviewNav" type="button"><span class="side-icon">⌂</span> Overview</button>
+    <div class="side-label" style="margin-top:20px">Chapters</div>
+    <div id="chapterNavList">
+      <button class="chapter-button" id="flipFlopsNav" type="button" aria-expanded="true"><span class="side-icon">◈</span> Flip-Flops <span class="chapter-chevron">›</span></button>
+      <div class="lesson-stack" id="flipLessonStack">
+        <button class="lesson-button active" id="jkLessonNav" type="button"><span class="lesson-dot"></span> JK Flip-Flop</button>
+      </div>
+    </div>
+    <button type="button" class="side-add" id="addChapter">＋ Add a chapter</button>
+    <div class="sidebar-spacer"></div>
+    <div class="side-foot"><b>Learn by experimenting.</b><br>Chapters are saved locally in this browser.</div>
+  </aside>
+  <div class="course-workspace">
+    <div class="course-header">
+      <div style="display:flex;align-items:center;gap:14px;min-width:0"><button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open chapters">☰</button><div class="breadcrumb" id="breadcrumbs"><a href="#overview" data-go="overview">Electronics</a><span class="crumb-separator">/</span><a href="#flip-flops" data-go="flipflops">Flip-Flops</a><span class="crumb-separator">/</span><b>JK Flip-Flop</b></div></div>
+      <span class="header-pill">⚡ Interactive learning</span>
+    </div>
+    <section class="course-page" id="overviewView" hidden>
+      <p class="intro-kicker">Your learning space</p>
+      <h1 class="page-title">Electronics, <span style="color:#54e9d6">made simple.</span></h1>
+      <p class="page-subtitle">Explore concepts chapter by chapter, experiment with real logic states, and understand the reason behind every result.</p>
+      <div class="page-grid">
+        <div class="course-card featured-card">
+          <small>Chapter 01 · 1 lesson</small><h2>◈ Flip-Flops</h2><p>Learn how sequential logic stores information. Start with the JK flip-flop: J and K inputs, rising-edge clock, and output timing.</p>
+          <button class="course-cta" id="startChapter" type="button">Explore Flip-Flops →</button>
+        </div>
+        <div class="course-card"><small>Your progress</small><h2 id="progressNumber">0 of 1</h2><p>Lessons completed</p><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><small id="progressLabel">0% complete</small></div>
+      </div>
+      <div id="addedOverviewChapters"></div>
+    </section>
+    <section class="course-page" id="chapterView" hidden>
+      <p class="intro-kicker">Chapter 01 · Sequential logic</p><h1 class="page-title">Flip-Flops</h1>
+      <p class="page-subtitle">Flip-flops are circuits that can remember one bit. Explore what determines their state and when that state changes.</p>
+      <div class="course-card"><small>Lesson 01 · Interactive simulator</small><div class="chapter-lesson-card"><div class="chapter-symbol">JK</div><div><strong>JK Flip-Flop</strong><p>Hold, Reset, Set, Toggle · Timing waveforms · Live clock</p></div><button type="button" class="course-cta" id="openJK">Open lesson →</button></div></div>
+    </section>
+    <section class="course-page" id="customChapterView" hidden><p class="intro-kicker">Chapter</p><h1 class="page-title" id="customChapterTitle"></h1><p class="page-subtitle">Your own chapter in Electronics.</p><div class="course-card" id="customChapterContent"></div></section>
+
+<div class="wrapper" id="jkLessonView">
+<div class="lesson-toolbar"><div class="lesson-kicker">CHAPTER 01 &nbsp; / &nbsp; LESSON 01</div><button id="completeLesson" class="complete-button" type="button">✓ Mark lesson complete</button></div>
+  <header class="topbar">
+    <div class="brand"><div class="brandmark" aria-hidden="true">⌁</div> LOGIC <span style="color:#4a617d">/</span> LAB</div>
+    <div class="tag">100% interactive · Works offline</div>
+  </header>
+  <section class="hero" aria-labelledby="title">
+    <div>
+      <p class="eyebrow">Digital electronics made visual</p>
+      <h1 id="title">Meet the <span>JK flip-flop.</span></h1>
+      <p>It remembers one bit: <b>0 or 1.</b> Choose J and K, send a rising clock edge, and see exactly how its memory changes.</p>
+    </div>
+    <div class="hero-aside"><span class="symbol">↑</span><div><small>Trigger type</small><strong>Positive clock edge</strong></div></div>
+  </section>
+  <main>
+    <div class="layout">
+      <section class="panel lab" aria-label="JK flip-flop simulator">
+        <div class="panel-head">
+          <div><h2>01 &nbsp; Experiment</h2><p>Tap the inputs. Then push the clock.</p></div>
+          <div class="status-badge"><span class="status-dot"></span> <span id="phaseText">READY</span></div>
+        </div>
+        <div class="controls" role="group" aria-label="JK inputs">
+          <button class="switch" id="switchJ" role="switch" aria-checked="false" aria-label="J input, currently 0. Toggle input J">
+            <span class="switch-text"><strong>Input J</strong><small id="jLabel">OFF · 0</small></span><span class="switch-pill" id="jDigit">0</span>
+          </button>
+          <button class="switch" id="switchK" role="switch" aria-checked="false" aria-label="K input, currently 0. Toggle input K">
+            <span class="switch-text"><strong>Input K</strong><small id="kLabel">OFF · 0</small></span><span class="switch-pill" id="kDigit">0</span>
+          </button>
+        </div>
+        <div class="board" id="board">
+          <svg viewBox="0 0 760 340" role="img" aria-label="Circuit diagram. J and K inputs and rising edge clock enter the JK flip-flop, which produces Q and inverted Q outputs.">
+            <defs><linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1d3153"/><stop offset="1" stop-color="#17213d"/></linearGradient></defs>
+            <text x="44" y="77" class="svg-small">INPUTS</text>
+            <text x="681" y="77" class="svg-small" text-anchor="middle">OUTPUTS</text>
+            <text x="51" y="125" class="svg-label">J</text>
+            <text x="50" y="200" class="svg-label" fill="#aa91ff">CLK</text>
+            <text x="51" y="275" class="svg-label">K</text>
+            <path d="M103 119 H281" id="wireJ" class="wire"/>
+            <path d="M103 194 H281" id="clock-in" class="wire clock-wire"/>
+            <path d="M103 269 H281" id="wireK" class="wire"/>
+            <circle class="pulse-particle" cx="102" cy="194" r="8" />
+            <rect x="280" y="42" width="274" height="259" rx="17" fill="url(#chipGrad)" stroke="#7189b5" stroke-width="2" class="chip" />
+            <path d="M280 178 l20 16 -20 16" fill="none" stroke="#b3a1ff" stroke-width="3" />
+            <text x="417" y="123" text-anchor="middle" style="fill:#bdcbec;font-size:18px;letter-spacing:.18em;font-weight:900">JK</text>
+            <text x="417" y="183" text-anchor="middle" style="fill:#f5f8ff;font-size:48px;font-weight:900;letter-spacing:-.04em">FF</text>
+            <text x="417" y="209" text-anchor="middle" class="svg-small">1-BIT MEMORY</text>
+            <text x="417" y="252" text-anchor="middle" class="svg-small" style="fill:#b3a1ff">↑ RISING EDGE</text>
+            <path d="M554 121 H699" id="wireQ" class="wire"/>
+            <path d="M554 234 H699" id="wireQbar" class="wire complement"/>
+            <circle cx="705" cy="121" r="17" id="ledQ" class="led" />
+            <circle cx="705" cy="234" r="17" id="ledQbar" class="led inverted on" />
+            <text x="648" y="103" text-anchor="middle" class="svg-label">Q</text>
+            <text x="648" y="218" text-anchor="middle" class="svg-label">Q̅</text>
+            <text x="705" y="128" text-anchor="middle" id="svgQ" class="svg-number" style="fill:#e4efff;font-size:19px">0</text>
+            <text x="705" y="241" text-anchor="middle" id="svgQbar" class="svg-number" style="fill:#0c1735;font-size:19px">1</text>
+            <text x="417" y="324" text-anchor="middle" class="svg-small">STATE CHANGES ONLY ON ↑ CLK</text>
+          </svg>
+        </div>
+        <div class="next-banner" aria-live="polite">
+          <div><small>Next Q after the next ↑ clock</small><strong id="previewText">With J=0, K=0, Q will stay 0.</strong></div><div class="next-bit" id="nextBit">0</div>
+        </div>
+        <div class="actionrow">
+          <button id="clockBtn" class="btn-primary"><span class="arrow">↑</span> PULSE CLOCK</button>
+          <button id="autoBtn" class="btn-secondary" aria-pressed="false" title="Automatically pulse once every second">▶ Auto</button>
+          <button id="resetBtn" class="btn-secondary" title="Clear memory and timing graph">↺ Reset</button>
+        </div>
+        <div class="tiny-note">Keyboard: <span class="key">J</span> and <span class="key">K</span> toggle inputs · <span class="key">Space</span> clocks · <span class="key">R</span> resets</div>
+      </section>
+      <aside class="panel right-panel">
+        <div class="section-label">02 / Understand what happened</div>
+        <div class="mode-card" aria-live="polite" aria-atomic="true">
+          <div class="mode-row"><div class="mode-icon" id="modeIcon">=</div><div><div class="mode-title" id="modeTitle">HOLD</div><div class="mode-formula" id="modeFormula">J=0 · K=0</div></div></div>
+          <p class="mode-description" id="modeDescription">The flip-flop keeps the bit it was already storing. Pressing the clock changes nothing.</p>
+        </div>
+        <div class="rule"><div class="rule-icon">✦</div><div><b>Golden rule: inputs are not the clock.</b><p>Changing J or K only selects what will happen. The output Q changes on the <span class="rise">↑ rising clock edge</span>, not when you flip the switches.</p></div></div>
+        <div class="truth-head"><h3>JK truth table</h3><span>Highlighted = current inputs</span></div>
+        <table class="truth" aria-label="JK flip-flop next state truth table">
+          <thead><tr><th>J</th><th>K</th><th>Q next</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr data-mode="00" class="active"><td class="val">0</td><td class="val">0</td><td class="result">Q (same)</td><td>Hold</td></tr>
+            <tr data-mode="01"><td class="val">0</td><td class="val">1</td><td class="result">0</td><td>Reset</td></tr>
+            <tr data-mode="10"><td class="val">1</td><td class="val">0</td><td class="result">1</td><td>Set</td></tr>
+            <tr data-mode="11"><td class="val">1</td><td class="val">1</td><td class="result">Q̅ (opposite)</td><td>Toggle</td></tr>
+          </tbody>
+        </table>
+        <div class="tip"><b id="eventTitle">Memory currently stores Q = 0</b><p id="eventText">Pick a combination and pulse the clock to see the output react. Q̅ is always the opposite of Q.</p></div>
+      </aside>
+    </div>
+    <div class="bottom-grid">
+      <section class="panel wave-panel">
+        <div class="wave-head"><div><h2>03 &nbsp; See the timing</h2><p>Each vertical dashed line marks a <b style="color:#d8ceff">rising edge</b>. Watch Q jump right at that instant.</p></div><div class="cycle-count" id="cycleCount">0 CLOCKS</div></div>
+        <div class="wavebox"><svg id="waveSvg" viewBox="0 0 960 282" role="img" aria-label="Live timing diagram showing J K CLK and Q traces. After each pulse a clock cycle appears."></svg></div>
+        <div class="wave-foot"><span><i class="dot" style="background:#53e4d7"></i>J</span><span><i class="dot" style="background:#ffd37b"></i>K</span><span><i class="dot" style="background:#b6a1ff"></i>Clock</span><span><i class="dot" style="background:#66b6ff"></i>Q (memory)</span></div>
+      </section>
+      <section class="panel learn-panel"><h2>04 &nbsp; Try these experiments</h2><p>Choose an experiment, then press <b style="color:#8af1e2">PULSE CLOCK</b>. Try pulsing twice in Toggle mode.</p>
+        <div class="presets">
+          <button class="preset" data-j="1" data-k="0"><span class="preset-code">J1 K0</span><span><strong>SET → remember a 1</strong><small>Forces Q to 1 on the next rising edge</small></span><span class="chev">›</span></button>
+          <button class="preset" data-j="0" data-k="1"><span class="preset-code">J0 K1</span><span><strong>RESET → remember a 0</strong><small>Forces Q to 0 on the next rising edge</small></span><span class="chev">›</span></button>
+          <button class="preset" data-j="1" data-k="1"><span class="preset-code">J1 K1</span><span><strong>TOGGLE → change every time</strong><small>0→1, then 1→0, then 0→1…</small></span><span class="chev">›</span></button>
+          <button class="preset" data-j="0" data-k="0"><span class="preset-code">J0 K0</span><span><strong>HOLD → keep the current bit</strong><small>Neither input can change Q</small></span><span class="chev">›</span></button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer-note">Built to teach, not just memorize. <b>Q is your one-bit memory; Q̅ is its complement.</b> A positive-edge JK flip-flop updates only at ↑ clock.</footer>
+</div>
+  </div>
+</div>
+<script>
+(()=>{
+  'use strict';
+  let J=0,K=0,Q=0,cycles=0,history=[],pulsing=false,autoTimer=null,finishTimer=null;
+  const $=id=>document.getElementById(id);
+  const descriptors={
+    '00':{title:'HOLD',icon:'=',description:'The flip-flop keeps the bit it was already storing. Every clock pulse preserves the same Q.',tip:'Nothing changes, even when the clock arrives.'},
+    '01':{title:'RESET',icon:'↓',description:'A clock pulse clears the stored bit to 0. It stays 0 on following pulses as long as J=0 and K=1.',tip:'Reset is like writing the number 0 into memory.'},
+    '10':{title:'SET',icon:'↑',description:'A clock pulse writes a 1 into memory. It stays 1 on following pulses as long as J=1 and K=0.',tip:'Set is like writing the number 1 into memory.'},
+    '11':{title:'TOGGLE',icon:'⇄',description:'Each rising clock edge flips the stored bit. If Q was 0, it becomes 1. If Q was 1, it becomes 0.',tip:'This is the special JK behavior: two 1s mean invert, not an invalid state.'}
+  };
+  const mode=()=>`${J}${K}`;
+  const computedNext=()=>J===0&&K===0?Q:J===0&&K===1?0:J===1&&K===0?1:1-Q;
+  function paint(){
+    for(const [name,value] of [['J',J],['K',K]]){
+      const btn=$('switch'+name);btn.setAttribute('aria-checked',String(!!value));btn.setAttribute('aria-label',`${name} input, currently ${value}. Toggle input ${name}`);
+      $(name.toLowerCase()+'Digit').textContent=value;
+      $(name.toLowerCase()+'Label').textContent=value?'ON · 1':'OFF · 0';
+    }
+    $('wireJ').classList.toggle('active',!!J);$('wireK').classList.toggle('active',!!K);
+    $('wireQ').classList.toggle('active',!!Q);$('wireQbar').classList.toggle('active',!Q);
+    $('ledQ').classList.toggle('on',!!Q);$('ledQbar').classList.toggle('on',!Q);
+    $('svgQ').textContent=Q;$('svgQbar').textContent=1-Q;
+    $('svgQ').style.fill=Q?'#0c1735':'#edf4ff';$('svgQbar').style.fill=Q?'#edf4ff':'#0c1735';
+    const next=computedNext(); $('nextBit').textContent=next; $('nextBit').classList.toggle('changed',next!==Q);
+    const txt={ '00':`With J=0, K=0, Q will stay ${Q}.`, '01':`With J=0, K=1, Q will become 0.`, '10':`With J=1, K=0, Q will become 1.`, '11':`With J=1, K=1, Q will flip: ${Q} → ${1-Q}.`};
+    $('previewText').textContent=txt[mode()];
+    const desc=descriptors[mode()];$('modeIcon').textContent=desc.icon;$('modeTitle').textContent=desc.title;$('modeFormula').textContent=`J=${J} · K=${K}`;$('modeDescription').textContent=desc.description;
+    document.querySelectorAll('.truth tbody tr').forEach(row=>row.classList.toggle('active',row.dataset.mode===mode()));
+    $('cycleCount').textContent=cycles+ (cycles===1?' CLOCK':' CLOCKS');
+  }
+  function setInputs(j,k){J=Number(j);K=Number(k);paint();}
+  function renderWave(){
+    const svg=$('waveSvg');while(svg.firstChild)svg.removeChild(svg.firstChild);
+    const ns='http://www.w3.org/2000/svg';
+    const el=(type,attrs,text)=>{const e=document.createElementNS(ns,type);for(const [k,v] of Object.entries(attrs||{}))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;svg.appendChild(e);return e;};
+    const rows=[{name:'J',y:53,col:'#53e4d7'},{name:'K',y:112,col:'#ffd37b'},{name:'CLK',y:171,col:'#b6a1ff'},{name:'Q',y:230,col:'#66b6ff'}],minX=105,maxX=933;
+    for(const row of rows){el('text',{x:22,y:row.y+5,class:'axislabel'},row.name);el('line',{x1:minX,y1:row.y,x2:maxX,y2:row.y,class:'gridline'});}
+    if(!history.length){
+      const values=[J,K,0,Q];rows.forEach((row,i)=>{
+        const y=row.y+(values[i]?-16:16);
+        el('path',{d:`M ${minX} ${y} H ${maxX}`,class:'trace',stroke:row.col,opacity:i===2?.3:1});
+        el('text',{x:490,y:273,text_anchor:'middle',class:'timelabel'},'Pulse the clock to record signals');
+      });return;
+    }
+    const recent=history.slice(-7),step=(maxX-minX)/7;
+    // Always render chronological clock cycles, with the rising edge at 30% of each cycle.
+    for(let i=0;i<recent.length;i++){
+      const x=minX+i*step,edge=x+step*.29;
+      el('line',{x1:edge,x2:edge,y1:25,y2:254,stroke:'#8f7fe0','stroke-width':1,'stroke-dasharray':'5 7',opacity:.65});
+      el('text',{x:edge,y:270,'text-anchor':'middle',class:'timelabel'},String(cycles-recent.length+i+1));
+    }
+    const line=(row,points)=>el('path',{d:points.map((p,i)=>`${i?'L':'M'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' '),stroke:row.col,class:'trace'});
+    rows.forEach((row,ri)=>{
+      const points=[],hi=row.y-17,lo=row.y+17,lev=v=>v?hi:lo;
+      recent.forEach((s,i)=>{
+        const x=minX+i*step,edge=x+step*.29,fall=x+step*.69,end=x+step;
+        if(ri===0||ri===1){const value=ri===0?s.j:s.k;const y=lev(value);
+          if(!points.length)points.push([x,y]);else if(points.at(-1)[1]!==y){points.push([x,points.at(-1)[1]],[x,y]);}
+          points.push([end,y]);
+        }else if(ri===2){if(!points.length)points.push([x,lo]);points.push([edge,lo],[edge,hi],[fall,hi],[fall,lo],[end,lo]);}
+        else{const yBefore=lev(s.before),yAfter=lev(s.after);
+          if(!points.length)points.push([x,yBefore]);
+          points.push([edge,yBefore],[edge,yAfter],[end,yAfter]);
+        }
+      });
+      const endX=minX+recent.length*step;
+      if(recent.length<7){points.push([maxX,points.at(-1)[1]]);}
+      line(row,points);
+    });
+    el('text',{x:948,y:272,'text-anchor':'end',class:'timelabel'},'time →');
+  }
+  function fire(){
+    if(pulsing)return;
+    pulsing=true;
+    const previous=Q,next=computedNext(),m=mode();
+    Q=next;cycles++;history.push({j:J,k:K,before:previous,after:Q});if(history.length>80)history.shift();
+    $('board').classList.remove('pulsing');void $('board').offsetWidth;$('board').classList.add('pulsing');
+    $('phaseText').textContent='↑ EDGE';
+    $('eventTitle').textContent=`Clock ${cycles}: ${previous} → ${Q} (${descriptors[m].title})`;
+    $('eventText').textContent=Q!==previous?`The rising clock edge changed Q from ${previous} to ${Q}. ${descriptors[m].tip}`:`Q stayed at ${Q}. ${descriptors[m].tip}`;
+    paint();$('nextBit').classList.add('flash');$('modeTitle').classList.add('flash');renderWave();
+    finishTimer=setTimeout(()=>{pulsing=false;$('board').classList.remove('pulsing');$('nextBit').classList.remove('flash');$('modeTitle').classList.remove('flash');$('phaseText').textContent='READY';},600);
+  }
+  function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null;}$('autoBtn').textContent='▶ Auto';$('autoBtn').classList.remove('playing');$('autoBtn').setAttribute('aria-pressed','false');}
+  function reset(){stopAuto();clearTimeout(finishTimer);pulsing=false;Q=0;cycles=0;history=[];$('board').classList.remove('pulsing');$('phaseText').textContent='READY';$('eventTitle').textContent='Memory reset to Q = 0';$('eventText').textContent='The output is back to zero. Choose new inputs to experiment again.';paint();renderWave();}
+  $('switchJ').addEventListener('click',()=>setInputs(1-J,K));
+  $('switchK').addEventListener('click',()=>setInputs(J,1-K));
+  $('clockBtn').addEventListener('click',fire);
+  $('resetBtn').addEventListener('click',reset);
+  $('autoBtn').addEventListener('click',()=>{
+    if(autoTimer){stopAuto();return;}
+    $('autoBtn').textContent='Ⅱ Pause';$('autoBtn').classList.add('playing');$('autoBtn').setAttribute('aria-pressed','true');
+    fire();autoTimer=setInterval(fire,950);
+  });
+  document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{
+    setInputs(Number(btn.dataset.j),Number(btn.dataset.k));
+    document.querySelector('.lab').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
+  }));
+  document.addEventListener('keydown',e=>{
+    if(e.altKey||e.ctrlKey||e.metaKey||e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
+    const t=e.target;if(t instanceof HTMLElement&&t.closest('button')&&e.code==='Space')return;
+    if(e.code==='KeyJ'){setInputs(1-J,K);}else if(e.code==='KeyK'){setInputs(J,1-K);}else if(e.code==='KeyR'){reset();}else if(e.code==='Space'){e.preventDefault();fire();}
+  });
+  paint();renderWave();
+})();
+</script>
+
+<script>
+(()=>{
+  'use strict';
+  const $=s=>document.getElementById(s);
+  const storageKey='electronics_academy_v1';
+  const fallback={completed:false,chapters:[]};
+  let state=fallback;
+  try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved && typeof saved==='object')state={completed:!!saved.completed,chapters:Array.isArray(saved.chapters)?saved.chapters.filter(c=>c&&typeof c.title==='string').slice(0,40):[]};}catch(e){}
+  const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(state));}catch(e){}};
+  const clean=s=>String(s||'').trim().slice(0,65);
+  const views=['overviewView','chapterView','customChapterView','jkLessonView'];
+  let selected='jk';
+  const closeMenu=()=>{$('courseSidebar').classList.remove('open')};
+  const progress=()=>{ $('progressNumber').textContent=state.completed?'1 of 1':'0 of 1';$('progressFill').style.width=state.completed?'100%':'0%';$('progressLabel').textContent=state.completed?'100% complete':'0% complete';$('completeLesson').textContent=state.completed?'✓ Lesson completed':'✓ Mark lesson complete';$('completeLesson').classList.toggle('done',state.completed) };
+  const crumbs=(parts)=>{
+    const b=$('breadcrumbs');b.replaceChildren();
+    const make=(text,route)=>{const node=document.createElement(route?'a':'b');node.textContent=text;if(route){node.href='#'+route;node.addEventListener('click',e=>{e.preventDefault();show(route)})}return node};
+    b.append(make('Electronics',parts.length?'overview':null));
+    for(let i=0;i<parts.length;i++){const sp=document.createElement('span');sp.className='crumb-separator';sp.textContent='/';b.append(sp);b.append(make(parts[i][0],parts[i][1]));}
+  };
+  function show(route){
+    let actual=route||'jk';if(actual!=='overview'&&actual!=='flipflops'&&actual!=='jk'&&!actual.startsWith('custom-')) actual='jk';
+    if(actual.startsWith('custom-')&&!state.chapters.some(c=>c.id===actual.slice(7)))actual='overview';
+    selected=actual;
+    for(const id of views)$(id).hidden=true;
+    $('overviewNav').classList.toggle('active',actual==='overview');
+    $('flipFlopsNav').classList.toggle('active',actual==='flipflops');
+    $('jkLessonNav').classList.toggle('active',actual==='jk');
+    document.querySelectorAll('[data-custom-id]').forEach(n=>n.classList.toggle('active',actual==='custom-'+n.dataset.customId));
+    if(actual==='overview'){$('overviewView').hidden=false;crumbs([]);}
+    else if(actual==='flipflops'){$('chapterView').hidden=false;crumbs([['Flip-Flops',null]]);}
+    else if(actual==='jk'){$('jkLessonView').hidden=false;crumbs([['Flip-Flops','flipflops'],['JK Flip-Flop',null]]);}
+    else {const id=actual.slice(7);const c=state.chapters.find(x=>x.id===id);if(c){
+      $('customChapterView').hidden=false;$('customChapterTitle').textContent=c.title;
+      const box=$('customChapterContent');box.replaceChildren();
+      const caption=document.createElement('small');caption.textContent='Your chapter';box.append(caption);
+      const note=document.createElement('p');note.className='empty-note';note.textContent='This chapter is ready. Add a lesson to start organizing your learning.';box.append(note);
+      const button=document.createElement('button');button.type='button';button.className='course-cta';button.textContent='＋ Add lesson';button.onclick=()=>{
+        const name=clean(prompt('New lesson name:'));if(!name)return;
+        if(!Array.isArray(c.lessons))c.lessons=[];
+        c.lessons.push(name);save();renderCustom();show(actual);
+      };box.append(button);
+      (c.lessons||[]).forEach((name,i)=>{const row=document.createElement('div');row.className='chapter-lesson-card';const left=document.createElement('div');const strong=document.createElement('strong');strong.textContent=name;const msg=document.createElement('p');msg.textContent='Lesson content can be added in a future update.';left.append(strong,msg);row.append(left);box.append(row)});
+      crumbs([[c.title,null]]);
+    }}
+    closeMenu();try{if(location.hash.slice(1)!==actual)history.replaceState(null,'','#'+actual);}catch(e){}
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  function renderCustom(){
+    document.querySelectorAll('.custom-chapter-button').forEach(e=>e.remove());
+    $('addedOverviewChapters').replaceChildren();
+    for(const c of state.chapters){
+      const btn=document.createElement('button');btn.className='chapter-button custom-chapter-button';btn.type='button';btn.dataset.customId=c.id;
+      const ico=document.createElement('span');ico.className='side-icon';ico.textContent='◇';btn.append(ico,document.createTextNode(c.title));btn.onclick=()=>show('custom-'+c.id);$('chapterNavList').append(btn);
+      const card=document.createElement('div');card.className='course-card';card.style.marginTop='16px';const label=document.createElement('small');label.textContent='Your chapter';const h=document.createElement('h2');h.textContent=c.title;const p=document.createElement('p');p.textContent=(c.lessons||[]).length+' lesson(s)';const go=document.createElement('button');go.className='course-cta';go.textContent='Open chapter →';go.onclick=()=>show('custom-'+c.id);card.append(label,h,p,go);$('addedOverviewChapters').append(card);
+    }
+  }
+  $('addChapter').addEventListener('click',()=>{
+    const title=clean(prompt('Name your new electronics chapter:'));if(!title)return;
+    const id='c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+    state.chapters.push({id,title,lessons:[]});save();renderCustom();show('custom-'+id);
+  });
+  $('overviewNav').onclick=()=>show('overview');
+  $('flipFlopsNav').onclick=()=>{
+    show('flipflops');
+  };
+  $('jkLessonNav').onclick=()=>show('jk');
+  $('startChapter').onclick=()=>show('flipflops');$('openJK').onclick=()=>show('jk');
+  $('mobileMenu').onclick=()=>{$('courseSidebar').classList.toggle('open')};
+  $('completeLesson').onclick=()=>{state.completed=!state.completed;save();progress()};
+  window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
+  renderCustom();progress();show(location.hash.slice(1)||'jk');
+})();
+</script>
+</body>
+</html>
