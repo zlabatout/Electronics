@@ -76,6 +76,32 @@
 @media(max-width:850px){.course-shell{display:block}.course-sidebar{position:fixed;left:0;top:0;width:275px;box-shadow:20px 0 60px #0409158a;transform:translateX(-105%);transition:transform .22s ease}.course-sidebar.open{transform:translateX(0)}.mobile-menu{display:block}.course-header{padding:0 17px}.course-header .header-pill{display:none}.course-workspace>.wrapper{padding:20px 16px 39px}.course-page{padding:36px 19px 55px}.page-grid{grid-template-columns:1fr}.crumb-separator:nth-of-type(2){display:none}}
 @media(max-width:540px){.chapter-lesson-card{align-items:flex-start;flex-wrap:wrap}.chapter-lesson-card button{margin:0 0 0 73px}.course-card{padding:21px}.lesson-toolbar{margin-bottom:13px}}
 
+
+/* D flip-flop teaching laboratory */
+#dLessonView[hidden]{display:none!important}
+.d-lesson .d-intro{color:var(--muted);font-size:15px;max-width:750px}
+.d-lesson .d-board svg{display:block;width:100%;height:auto}
+.d-lesson .d-board.pulsing .chip{animation:chipFlash .6s ease both}
+.d-lesson .d-board.pulsing .d-clock-particle{animation:travel .55s linear both}
+.d-lesson .d-board.pulsing #dClockWire{stroke:#f5e8ff;filter:drop-shadow(0 0 8px #9f8aff)}
+.d-lesson .d-clock-particle{opacity:0;fill:#fff;filter:drop-shadow(0 0 9px white)}
+.d-lesson .d-demo-note{font-size:13px;color:var(--muted);line-height:1.7;margin:13px 1px 0}
+.d-lesson .d-symbol-card{background:#172d40;border:1px solid #326a70;padding:15px 17px;border-radius:14px;display:flex;align-items:center;gap:16px;margin-bottom:17px}
+.d-lesson .d-symbol-card .d-eq{font-weight:900;color:#6bf3db;font-size:24px;white-space:nowrap}
+.d-lesson .d-symbol-card p{margin:0;font-size:12px;color:#c8d9ec;line-height:1.6}
+.d-lesson .d-steps{display:grid;gap:12px;margin-top:18px}
+.d-lesson .d-step{display:flex;gap:11px;align-items:flex-start;font-size:13px;color:#c2d5ef}
+.d-lesson .d-step b{display:grid;place-items:center;background:#24464f;border:1px solid #338b8d;color:#6cf4da;border-radius:9px;min-width:29px;height:29px}
+.d-lesson .d-led-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0 18px}
+.d-lesson .d-led-box{border:1px solid #354b67;background:#15253d;border-radius:12px;padding:11px 15px}
+.d-lesson .d-led-box span{color:#9ab4d4;font-size:11px;font-weight:800;display:block}
+.d-lesson .d-led-box strong{font-size:30px;line-height:1.25;color:#e8f5ff}
+.d-lesson .d-led-box strong.high{color:#64f7db}
+.d-lesson .d-chip-caption{fill:#89a6ca;font-size:13px;font-weight:850}
+.d-lesson .d-control-help{margin-top:14px;font-size:12px;color:#a9bfdc}
+.d-lesson .d-info{display:block;font-size:12px;color:#a9bfdc;line-height:1.6;margin:13px 0 0}
+@media(max-width:560px){.d-lesson .d-symbol-card{flex-wrap:wrap}.d-lesson .d-symbol-card .d-eq{font-size:21px}}
+
 </style>
 </head>
 <body>
@@ -90,6 +116,7 @@
       <button class="chapter-button" id="flipFlopsNav" type="button" aria-expanded="true"><span class="side-icon">◈</span> Flip-Flops <span class="chapter-chevron">›</span></button>
       <div class="lesson-stack" id="flipLessonStack">
         <button class="lesson-button active" id="jkLessonNav" type="button"><span class="lesson-dot"></span> JK Flip-Flop</button>
+        <button class="lesson-button" id="dLessonNav" type="button"><span class="lesson-dot"></span> D Flip-Flop</button>
       </div>
     </div>
     <button type="button" class="side-add" id="addChapter">＋ Add a chapter</button>
@@ -107,10 +134,10 @@
       <p class="page-subtitle">Explore concepts chapter by chapter, experiment with real logic states, and understand the reason behind every result.</p>
       <div class="page-grid">
         <div class="course-card featured-card">
-          <small>Chapter 01 · 1 lesson</small><h2>◈ Flip-Flops</h2><p>Learn how sequential logic stores information. Start with the JK flip-flop: J and K inputs, rising-edge clock, and output timing.</p>
+          <small>Chapter 01 · 2 lessons</small><h2>◈ Flip-Flops</h2><p>Discover how digital circuits remember a bit. Explore the JK flip-flop and the D (data) flip-flop using animated, interactive simulations.</p>
           <button class="course-cta" id="startChapter" type="button">Explore Flip-Flops →</button>
         </div>
-        <div class="course-card"><small>Your progress</small><h2 id="progressNumber">0 of 1</h2><p>Lessons completed</p><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><small id="progressLabel">0% complete</small></div>
+        <div class="course-card"><small>Your progress</small><h2 id="progressNumber">0 of 2</h2><p>Lessons completed</p><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><small id="progressLabel">0% complete</small></div>
       </div>
       <div id="addedOverviewChapters"></div>
     </section>
@@ -118,8 +145,98 @@
       <p class="intro-kicker">Chapter 01 · Sequential logic</p><h1 class="page-title">Flip-Flops</h1>
       <p class="page-subtitle">Flip-flops are circuits that can remember one bit. Explore what determines their state and when that state changes.</p>
       <div class="course-card"><small>Lesson 01 · Interactive simulator</small><div class="chapter-lesson-card"><div class="chapter-symbol">JK</div><div><strong>JK Flip-Flop</strong><p>Hold, Reset, Set, Toggle · Timing waveforms · Live clock</p></div><button type="button" class="course-cta" id="openJK">Open lesson →</button></div></div>
+      <div class="course-card" style="margin-top:18px"><small>Lesson 02 · Interactive simulator</small><div class="chapter-lesson-card"><div class="chapter-symbol">D</div><div><strong>D Flip-Flop</strong><p>Data input D · Rising-edge capture · Live Q and Q̅ · Timing diagram</p></div><button type="button" class="course-cta" id="openD">Open lesson →</button></div></div>
     </section>
     <section class="course-page" id="customChapterView" hidden><p class="intro-kicker">Chapter</p><h1 class="page-title" id="customChapterTitle"></h1><p class="page-subtitle">Your own chapter in Electronics.</p><div class="course-card" id="customChapterContent"></div></section>
+
+
+<section class="wrapper d-lesson" id="dLessonView" hidden>
+  <div class="lesson-toolbar"><div class="lesson-kicker">CHAPTER 01 &nbsp; / &nbsp; LESSON 02</div><button id="dCompleteLesson" class="complete-button" type="button">✓ Mark lesson complete</button></div>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Digital electronics made visual</p>
+      <h1>Meet the <span>D flip-flop.</span></h1>
+      <p class="d-intro">A tiny 1-bit memory. Set <b>D</b> to 0 or 1, then pulse the clock. The flip-flop copies D into Q <b>only at the rising edge ↑</b>. Between clock edges, Q keeps its value.</p>
+    </div>
+    <div class="hero-aside"><span class="symbol">↑</span><div><small>Trigger type</small><strong>Positive clock edge</strong></div></div>
+  </section>
+  <div class="layout">
+    <section class="panel lab" aria-label="Interactive D flip-flop simulator">
+      <div class="panel-head"><div><h2>01 &nbsp; Experiment</h2><p>Change D, then send a clock pulse.</p></div><div class="status-badge"><span class="status-dot"></span><span id="dPhase">READY</span></div></div>
+      <div class="controls" style="grid-template-columns:minmax(0,1fr)">
+        <button id="dSwitch" class="switch" type="button" role="switch" aria-checked="false" aria-label="D input, currently 0. Toggle the data input">
+          <span class="switch-text"><strong>Input D</strong><small id="dSwitchStatus">OFF · 0</small></span><span class="switch-pill" id="dSwitchDigit">0</span>
+        </button>
+      </div>
+      <div id="dBoard" class="board d-board">
+        <svg viewBox="0 0 640 295" role="img" aria-label="D flip-flop with D, clock, Q and inverse Q outputs">
+          <path id="dWireD" class="wire" d="M65 94 H242"/>
+          <path id="dClockWire" class="wire clock-wire" d="M65 190 H242"/>
+          <path id="dWireQ" class="wire" d="M423 105 H558"/>
+          <path id="dWireQbar" class="wire complement active" d="M423 204 H558"/>
+          <circle cx="65" cy="94" r="6" fill="#8fa1c2"/><circle cx="65" cy="190" r="6" fill="#b4a2f8"/>
+          <rect id="dChip" class="chip" x="242" y="35" width="181" height="222" rx="17"/>
+          <text class="svg-small" x="333" y="73" text-anchor="middle">EDGE TRIGGERED</text>
+          <text x="333" y="141" text-anchor="middle" fill="#f3f8ff" font-size="66" font-weight="900">D</text>
+          <text x="333" y="180" text-anchor="middle" fill="#e4efff" font-size="30" font-weight="900">FF</text>
+          <text class="d-chip-caption" x="333" y="227" text-anchor="middle">1-BIT STORAGE</text>
+          <path d="M242 177 l16 13 -16 13" fill="none" stroke="#bdabff" stroke-width="3"/>
+          <text class="svg-label" x="72" y="75">D</text><text class="svg-label" x="69" y="174">CLK ↑</text>
+          <text class="svg-label" x="516" y="82">Q</text><text class="svg-label" x="516" y="181">Q̅</text>
+          <circle class="led" id="dLedQ" cx="562" cy="105" r="23"/><circle class="led inverted on" id="dLedQbar" cx="562" cy="204" r="23"/>
+          <text class="svg-number" x="562" y="113" id="dSvgQ" text-anchor="middle">0</text>
+          <text class="svg-number" x="562" y="212" id="dSvgQbar" text-anchor="middle" style="fill:#0c1735">1</text>
+          <circle class="d-clock-particle" cx="68" cy="190" r="8"/>
+        </svg>
+      </div>
+      <div class="d-led-row">
+        <div class="d-led-box"><span>Stored bit · Q</span><strong id="dStateQ">0</strong></div>
+        <div class="d-led-box"><span>Complement · Q̅</span><strong id="dStateQbar" class="high">1</strong></div>
+      </div>
+      <div class="next-banner"><div><small>At the next rising edge ↑</small><strong id="dPreview">D = 0, so Q will become 0.</strong></div><div id="dNextBit" class="next-bit">0</div></div>
+      <div class="actionrow">
+        <button id="dClockBtn" class="btn-primary" type="button"><span class="arrow">↑</span> PULSE CLOCK</button>
+        <button id="dAutoBtn" class="btn-secondary" type="button" aria-pressed="false">▶ Auto</button>
+        <button id="dResetBtn" class="btn-secondary" type="button">↺ Reset</button>
+      </div>
+      <p class="d-demo-note" id="dEvent" aria-live="polite">Memory starts at Q = 0. Try changing D to 1: notice Q stays 0 until the next clock pulse.</p>
+    </section>
+    <section class="panel right-panel">
+      <div class="section-label">02 &nbsp; Understand the rule</div>
+      <div class="mode-card">
+        <div class="mode-row"><div class="mode-icon">D</div><div><div class="mode-title">DATA CAPTURE</div><div class="mode-formula">Q(next) = D</div></div></div>
+        <p class="mode-description" id="dModeText">At the next rising edge, Q copies D. Before the edge, Q stays as it is.</p>
+      </div>
+      <div class="rule"><div class="rule-icon">⚡</div><div><b>A clock edge is required</b><p>Moving the D switch does not immediately update Q. This simulator models a positive-edge-triggered D flip-flop.</p></div></div>
+      <div class="truth-head"><h3>Truth table</h3><span>evaluated on ↑ CLK</span></div>
+      <table class="truth d-truth"><thead><tr><th>D</th><th>Clock</th><th>Q(next)</th><th>Meaning</th></tr></thead>
+      <tbody><tr data-d="0" class="active"><td class="val">0</td><td>↑</td><td class="val">0</td><td>Store 0</td></tr>
+      <tr data-d="1"><td class="val">1</td><td>↑</td><td class="val">1</td><td>Store 1</td></tr></tbody></table>
+      <div class="d-symbol-card" style="margin-top:18px"><span class="d-eq">Q(next) = D</span><p>When the clock rises, the new stored value equals the D input. The inverted output Q̅ is always the opposite of Q.</p></div>
+      <p class="d-info"><b>Real circuits:</b> D must remain stable around the active edge (setup and hold times). This simulator demonstrates the ideal logical behavior.</p>
+    </section>
+  </div>
+  <div class="bottom-grid">
+    <section class="panel wave-panel">
+      <div class="wave-head"><div><h2>03 &nbsp; Watch the timing</h2><p>Observe D before a clock pulse, CLK going high, and Q updating at the ↑ edge.</p></div><div class="cycle-count" id="dCycleCount">0 CLOCKS</div></div>
+      <div class="wavebox"><svg id="dWaveSvg" viewBox="0 0 960 282" role="img" aria-label="Live timing diagram for D, CLK, Q and inverted Q"></svg></div>
+      <div class="wave-foot"><span><i class="dot" style="background:#53e4d7"></i>D</span><span><i class="dot" style="background:#b6a1ff"></i>Clock</span><span><i class="dot" style="background:#66b6ff"></i>Q</span><span><i class="dot" style="background:#ffc978"></i>Q̅</span></div>
+    </section>
+    <section class="panel learn-panel">
+      <h2>04 &nbsp; Try these challenges</h2><p>Predict the stored bit first. Then press <b style="color:#8af1e2">PULSE CLOCK</b> to test your answer.</p>
+      <div class="presets">
+        <button class="preset" id="dPresetOne" type="button"><span class="preset-code">D = 1</span><span><strong>Write a 1</strong><small>Will Q change before the clock?</small></span><span class="chev">›</span></button>
+        <button class="preset" id="dPresetZero" type="button"><span class="preset-code">D = 0</span><span><strong>Write a 0</strong><small>What happens on the next rising edge?</small></span><span class="chev">›</span></button>
+      </div>
+      <div class="d-steps">
+        <div class="d-step"><b>1</b><span>Set D to 1. See that Q remains unchanged until a clock edge.</span></div>
+        <div class="d-step"><b>2</b><span>Pulse once: Q becomes 1 and Q̅ becomes 0.</span></div>
+        <div class="d-step"><b>3</b><span>Set D to 0. Pulse again: Q becomes 0.</span></div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer-note">A D flip-flop is a one-bit memory cell. <b>Data is sampled at the rising clock edge, then held between edges.</b></footer>
+</section>
 
 <div class="wrapper" id="jkLessonView">
 <div class="lesson-toolbar"><div class="lesson-kicker">CHAPTER 01 &nbsp; / &nbsp; LESSON 01</div><button id="completeLesson" class="complete-button" type="button">✓ Mark lesson complete</button></div>
@@ -329,7 +446,7 @@
     document.querySelector('.lab').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
   }));
   document.addEventListener('keydown',e=>{
-    if(e.altKey||e.ctrlKey||e.metaKey||e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
+    if($('jkLessonView').hidden||e.altKey||e.ctrlKey||e.metaKey||e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;
     const t=e.target;if(t instanceof HTMLElement&&t.closest('button')&&e.code==='Space')return;
     if(e.code==='KeyJ'){setInputs(1-J,K);}else if(e.code==='KeyK'){setInputs(J,1-K);}else if(e.code==='KeyR'){reset();}else if(e.code==='Space'){e.preventDefault();fire();}
   });
@@ -342,15 +459,15 @@
   'use strict';
   const $=s=>document.getElementById(s);
   const storageKey='electronics_academy_v1';
-  const fallback={completed:false,chapters:[]};
+  const fallback={completed:false,dCompleted:false,chapters:[]};
   let state=fallback;
-  try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved && typeof saved==='object')state={completed:!!saved.completed,chapters:Array.isArray(saved.chapters)?saved.chapters.filter(c=>c&&typeof c.title==='string').slice(0,40):[]};}catch(e){}
+  try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved && typeof saved==='object')state={completed:!!saved.completed,dCompleted:!!saved.dCompleted,chapters:Array.isArray(saved.chapters)?saved.chapters.filter(c=>c&&typeof c.title==='string').slice(0,40):[]};}catch(e){}
   const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(state));}catch(e){}};
   const clean=s=>String(s||'').trim().slice(0,65);
-  const views=['overviewView','chapterView','customChapterView','jkLessonView'];
+  const views=['overviewView','chapterView','customChapterView','jkLessonView','dLessonView'];
   let selected='jk';
   const closeMenu=()=>{$('courseSidebar').classList.remove('open')};
-  const progress=()=>{ $('progressNumber').textContent=state.completed?'1 of 1':'0 of 1';$('progressFill').style.width=state.completed?'100%':'0%';$('progressLabel').textContent=state.completed?'100% complete':'0% complete';$('completeLesson').textContent=state.completed?'✓ Lesson completed':'✓ Mark lesson complete';$('completeLesson').classList.toggle('done',state.completed) };
+  const progress=()=>{const n=Number(state.completed)+Number(state.dCompleted),pct=Math.round(n/2*100);$('progressNumber').textContent=n+' of 2';$('progressFill').style.width=pct+'%';$('progressLabel').textContent=pct+'% complete';$('completeLesson').textContent=state.completed?'✓ Lesson completed':'✓ Mark lesson complete';$('completeLesson').classList.toggle('done',state.completed);$('dCompleteLesson').textContent=state.dCompleted?'✓ Lesson completed':'✓ Mark lesson complete';$('dCompleteLesson').classList.toggle('done',state.dCompleted) };
   const crumbs=(parts)=>{
     const b=$('breadcrumbs');b.replaceChildren();
     const make=(text,route)=>{const node=document.createElement(route?'a':'b');node.textContent=text;if(route){node.href='#'+route;node.addEventListener('click',e=>{e.preventDefault();show(route)})}return node};
@@ -358,17 +475,19 @@
     for(let i=0;i<parts.length;i++){const sp=document.createElement('span');sp.className='crumb-separator';sp.textContent='/';b.append(sp);b.append(make(parts[i][0],parts[i][1]));}
   };
   function show(route){
-    let actual=route||'jk';if(actual!=='overview'&&actual!=='flipflops'&&actual!=='jk'&&!actual.startsWith('custom-')) actual='jk';
+    let actual=route||'jk';if(actual!=='overview'&&actual!=='flipflops'&&actual!=='jk'&&actual!=='d'&&!actual.startsWith('custom-')) actual='jk';
     if(actual.startsWith('custom-')&&!state.chapters.some(c=>c.id===actual.slice(7)))actual='overview';
     selected=actual;
     for(const id of views)$(id).hidden=true;
     $('overviewNav').classList.toggle('active',actual==='overview');
     $('flipFlopsNav').classList.toggle('active',actual==='flipflops');
     $('jkLessonNav').classList.toggle('active',actual==='jk');
+    $('dLessonNav').classList.toggle('active',actual==='d');
     document.querySelectorAll('[data-custom-id]').forEach(n=>n.classList.toggle('active',actual==='custom-'+n.dataset.customId));
     if(actual==='overview'){$('overviewView').hidden=false;crumbs([]);}
     else if(actual==='flipflops'){$('chapterView').hidden=false;crumbs([['Flip-Flops',null]]);}
     else if(actual==='jk'){$('jkLessonView').hidden=false;crumbs([['Flip-Flops','flipflops'],['JK Flip-Flop',null]]);}
+    else if(actual==='d'){$('dLessonView').hidden=false;crumbs([['Flip-Flops','flipflops'],['D Flip-Flop',null]]);}
     else {const id=actual.slice(7);const c=state.chapters.find(x=>x.id===id);if(c){
       $('customChapterView').hidden=false;$('customChapterTitle').textContent=c.title;
       const box=$('customChapterContent');box.replaceChildren();
@@ -404,12 +523,108 @@
     show('flipflops');
   };
   $('jkLessonNav').onclick=()=>show('jk');
-  $('startChapter').onclick=()=>show('flipflops');$('openJK').onclick=()=>show('jk');
+  $('dLessonNav').onclick=()=>show('d');
+  $('startChapter').onclick=()=>show('flipflops');$('openJK').onclick=()=>show('jk');$('openD').onclick=()=>show('d');
   $('mobileMenu').onclick=()=>{$('courseSidebar').classList.toggle('open')};
   $('completeLesson').onclick=()=>{state.completed=!state.completed;save();progress()};
+  $('dCompleteLesson').onclick=()=>{state.dCompleted=!state.dCompleted;save();progress()};
   window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
   renderCustom();progress();show(location.hash.slice(1)||'jk');
 })();
 </script>
+
+<script>
+(()=>{
+  'use strict';
+  const $=id=>document.getElementById(id);
+  let D=0,Q=0,cycles=0,records=[],auto=null,animating=false,finish=null;
+  function paint(){
+    $('dSwitch').setAttribute('aria-checked',String(!!D));
+    $('dSwitch').setAttribute('aria-label','D input, currently '+D+'. Toggle the data input');
+    $('dSwitchDigit').textContent=D;
+    $('dSwitchStatus').textContent=D?'ON · 1':'OFF · 0';
+    $('dStateQ').textContent=Q;$('dStateQbar').textContent=1-Q;
+    $('dStateQ').classList.toggle('high',!!Q);$('dStateQbar').classList.toggle('high',!Q);
+    $('dNextBit').textContent=D;$('dNextBit').classList.toggle('changed',Q!==D);
+    $('dPreview').textContent='D = '+D+', so Q will '+(D===Q?'stay ':'become ')+D+'.';
+    $('dModeText').textContent='D is '+D+'. At the next rising clock edge, Q will store '+D+'. Right now Q still holds '+Q+'.';
+    for(const [id,on] of [['dWireD',D],['dWireQ',Q],['dWireQbar',!Q],['dLedQ',Q],['dLedQbar',!Q]])$(id).classList.toggle('active',!!on);
+    $('dSvgQ').textContent=Q;$('dSvgQbar').textContent=1-Q;
+    $('dSvgQ').style.fill=Q?'#09172d':'#f1f6ff';
+    $('dSvgQbar').style.fill=Q?'#f1f6ff':'#09172d';
+    $('dCycleCount').textContent=cycles+(cycles===1?' CLOCK':' CLOCKS');
+    document.querySelectorAll('.d-truth tbody tr').forEach(row=>row.classList.toggle('active',row.dataset.d===String(D)));
+  }
+  function waveform(){
+    const svg=$('dWaveSvg');svg.replaceChildren();
+    const ns='http://www.w3.org/2000/svg';
+    const element=(tag,attrs,txt)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(txt!==undefined)e.textContent=txt;svg.append(e);return e;};
+    const rows=[{name:'D',y:53,col:'#53e4d7'},{name:'CLK',y:112,col:'#b6a1ff'},{name:'Q',y:171,col:'#66b6ff'},{name:'Q̅',y:230,col:'#ffc978'}];
+    const minX=105,maxX=933,high=y=>y-17,low=y=>y+17,level=(y,v)=>v?high(y):low(y);
+    rows.forEach(row=>{element('text',{x:20,y:row.y+5,class:'axislabel'},row.name);element('line',{x1:minX,y1:row.y,x2:maxX,y2:row.y,class:'gridline'});});
+    if(!records.length){
+      [D,0,Q,1-Q].forEach((v,i)=>element('path',{d:'M '+minX+' '+level(rows[i].y,v)+' H '+maxX,class:'trace',stroke:rows[i].col,opacity:i===1?.4:1}));
+      element('text',{x:490,y:272,'text-anchor':'middle',class:'timelabel'},'Pulse the clock to begin the timing diagram');return;
+    }
+    const shown=records.slice(-7),step=(maxX-minX)/7;
+    shown.forEach((sample,i)=>{
+      const edge=minX+i*step+step*.30;
+      element('line',{x1:edge,x2:edge,y1:25,y2:254,stroke:'#8f7fe0','stroke-width':1,'stroke-dasharray':'5 7',opacity:.65});
+      element('text',{x:edge,y:270,'text-anchor':'middle',class:'timelabel'},String(cycles-shown.length+i+1));
+    });
+    rows.forEach((row,r)=>{
+      const points=[],add=(x,y)=>points.push([x,y]);
+      shown.forEach((s,i)=>{
+        const x=minX+i*step,edge=x+step*.30,fall=x+step*.69,end=x+step;
+        if(r===0){
+          const v=level(row.y,s.d);
+          if(!points.length)add(x,v);else if(points.at(-1)[1]!==v){add(x,points.at(-1)[1]);add(x,v);}
+          add(end,v);
+        } else if(r===1){
+          if(!points.length)add(x,low(row.y));
+          add(edge,low(row.y));add(edge,high(row.y));add(fall,high(row.y));add(fall,low(row.y));add(end,low(row.y));
+        } else {
+          const flip=r===3;
+          const before=level(row.y,flip?1-s.before:s.before);
+          const after=level(row.y,flip?1-s.after:s.after);
+          if(!points.length)add(x,before);
+          else if(points.at(-1)[1]!==before){add(x,points.at(-1)[1]);add(x,before);}
+          add(edge,before);add(edge,after);add(end,after);
+        }
+      });
+      if(shown.length<7){add(maxX,points.at(-1)[1]);}
+      element('path',{d:points.map((p,i)=>(i?'L ':'M ')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '),class:'trace',stroke:row.col});
+    });
+    element('text',{x:948,y:272,'text-anchor':'end',class:'timelabel'},'time →');
+  }
+  function setD(value){D=Number(value);paint();}
+  function pulse(){
+    if(animating)return;
+    animating=true;
+    const before=Q;Q=D;cycles++;records.push({d:D,before,after:Q});if(records.length>100)records.shift();
+    $('dBoard').classList.remove('pulsing');void $('dBoard').offsetWidth;$('dBoard').classList.add('pulsing');
+    $('dPhase').textContent='↑ EDGE';
+    $('dEvent').textContent='Clock '+cycles+': D = '+D+'. Q '+before+' → '+Q+'. '+(before===Q?'The stored bit stayed the same.':'The stored bit changed at the rising edge.');
+    paint();waveform();
+    clearTimeout(finish);finish=setTimeout(()=>{animating=false;$('dBoard').classList.remove('pulsing');$('dPhase').textContent='READY';},570);
+  }
+  function pause(){if(auto!==null){clearInterval(auto);auto=null;}$('dAutoBtn').textContent='▶ Auto';$('dAutoBtn').classList.remove('playing');$('dAutoBtn').setAttribute('aria-pressed','false');}
+  $('dSwitch').addEventListener('click',()=>setD(1-D));
+  $('dClockBtn').addEventListener('click',pulse);
+  $('dAutoBtn').addEventListener('click',()=>{
+    if(auto!==null){pause();return;}
+    pulse();auto=setInterval(pulse,1100);$('dAutoBtn').textContent='Ⅱ Pause';$('dAutoBtn').classList.add('playing');$('dAutoBtn').setAttribute('aria-pressed','true');
+  });
+  $('dResetBtn').addEventListener('click',()=>{
+    pause();clearTimeout(finish);animating=false;D=0;Q=0;cycles=0;records=[];$('dPhase').textContent='READY';$('dBoard').classList.remove('pulsing');
+    $('dEvent').textContent='Reset to D = 0 and Q = 0. Select D and pulse the clock.';paint();waveform();
+  });
+  $('dPresetOne').addEventListener('click',()=>setD(1));
+  $('dPresetZero').addEventListener('click',()=>setD(0));
+  window.addEventListener('hashchange',()=>{if(location.hash!=='#d')pause();});
+  paint();waveform();
+})();
+</script>
+
 </body>
 </html>
